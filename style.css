@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+#main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+#todoSection {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+    box-sizing: border-box;
+}
+
+.noteBox {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+    box-sizing: border-box;
+}
+
+#todoSection input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#todoSection ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#todoSection li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#todoSection li:last-child {
+    border-bottom: none;
+}
+
+#todoSection li img {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+.delListBtn{
+cursor: pointer; background-color: rgba(255, 0, 0, 0.65); border-radius: 50%; height: 20px; width: 20px;
+}
+.delListBtn:hover{
+    background-color: red;
+}
+
+.noteImg{
+    display: none;
+}
+.contentBox{
+    border: none;
+    width: 100%;
+    margin-bottom: 20%;
+    padding: 2px;
+    height: 100px;
+}
+
+#loader{
+    background-color: red;
+    height: 2px;
+    
+}
+
+.reminderBtn{
+    
+}
+
+@media screen and (max-width: 768px) {
+    #main {
+        flex-direction: column;
+        align-items: center;
+    }
+}
