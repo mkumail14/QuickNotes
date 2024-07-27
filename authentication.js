@@ -29,6 +29,7 @@ async function logout() {
     try {
         await signOut(auth);
         localStorage.clear();
+        localStorage.setItem('pendingSite', window.location.href)
         console.log("Sign-out successful.");
     } catch (error) {
         console.error(error);

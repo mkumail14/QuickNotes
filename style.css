@@ -106,6 +106,49 @@ cursor: pointer; background-color: rgba(255, 0, 0, 0.65); border-radius: 50%; he
     
 }
 
+
+/* General button styling */
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Logout button styling */
+.logoutBtn {
+    background-color: #f39c12; /* Orange */
+}
+
+.logoutBtn:hover {
+    background-color: #e67e22; /* Darker orange */
+    transform: translateY(-2px);
+}
+
+.logoutBtn:active {
+    background-color: #d35400; /* Even darker orange */
+    transform: translateY(1px);
+}
+
+/* Delete button styling */
+.deleteBtn {
+    background-color: #e74c3c; /* Red */
+}
+
+.deleteBtn:hover {
+    background-color: #c0392b; /* Darker red */
+    transform: translateY(-2px);
+}
+
+.deleteBtn:active {
+    background-color: #a93226; /* Even darker red */
+    transform: translateY(1px);
+}
+
+
 @media screen and (max-width: 768px) {
     #main {
         flex-direction: column;

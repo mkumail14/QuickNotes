@@ -10,18 +10,15 @@
 </head>
 <body>
     <div id="loader"></div>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin: 20px;">
+    <div style="display: flex; justify-content: center; padding-right: 20px; padding-left: 20px; align-items: center; gap: 10px; margin: 20px;">
         <input type="text" onclick="openCreateModal()" style="border-radius: 25px; padding: 10px 15px; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); width: 300px;" placeholder="Make New Note....">
-        <button disabled id="reminderBtn" style="border-radius: 25px; padding: 10px 20px; border: none; background-color: #007BFF; color: white; font-size: 16px; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+        <!-- <button disabled id="reminderBtn" style="border-radius: 25px; padding: 10px 20px; border: none; background-color: #007BFF; color: white; font-size: 16px; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
             Add Reminder
-        </button>
+        </button> -->
+        <button class="button logoutBtn">Logout</button>  
+
     </div>
         <div id="main">
-        <div id="todoSection">
-            <input id="todoInput" type="text" placeholder="Add a new task...">
-            <ul id="dataList"></ul>
-        </div>
-        <div id="allNotes"></div>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -35,7 +32,9 @@
                 <div id="modalBody" class="modal-body">
                     <div id="contentSection"></div>
                     <div id="imgSection"></div>
-                    <div id="uploadSection" style="margin-top: 5%;"><input id="newFile" type="File"></div>
+                    <div id="uploadSection" style="margin-top: 5%;"><input id="newFile" type="File">    <button onclick="delNote()" class="button deleteBtn">Delete Note</button>  
+  
+                    </div>
                 </div>
               </div>                
             </div>
@@ -57,7 +56,7 @@
                 <div id="uploadSection" style="margin-top: 5%;"><input id="newNoteFile" type="File"></div>
                 <div style="display: flex; justify-content: center; align-items: center; margin: 3%; margin-top: 5%; ">
                 <button onclick="saveNewNote()" style="border-radius: 25px; padding: 10px 20px; border: none; background-color: #007BFF; color: white; font-size: 16px; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">SAVE</button>
-                </div>
+              </div>
             </div>
           </div>                
         </div>
@@ -65,8 +64,20 @@
 </div>
     <footer>Developed by MKA © 2024 - ALL RIGHTS RESERVED</footer>
     <script type="module" src="app.js"></script>
+    <!-- <script type="module" src="authentication.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script> 
+  if ('serviceWorker' in navigator) {
+   navigator.serviceWorker.register('/sw.js')
+   .then((registration) => {
+     console.log('Service Worker registered with scope:', registration.scope);
+   })
+   .catch((error) => {
+     console.log('Service Worker registration failed:', error);
+   });
+ }
+  </script>  
 </body>
 </html>

@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, Timestamp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, Timestamp, deleteField } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
 import { getStorage , ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
 
 const firebaseConfig1 = {
@@ -19,7 +19,7 @@ const storage = getStorage(app1);
 let temp = [],noteNumber;
 loadTodo();
 loadAllNotes();
-
+if(document.getElementById("todoInput")){
 document.getElementById("todoInput").addEventListener("keypress", async function(event) {
     if (event.key === "Enter") {
         let value = document.getElementById("todoInput").value;
@@ -32,7 +32,7 @@ document.getElementById("todoInput").addEventListener("keypress", async function
         }
     }
 });
-
+}
 document.getElementById("dataList").addEventListener("click", async function(event) {
     if (event.target.tagName === "LI") {
         const index = event.target.getAttribute("data-index");
@@ -49,6 +49,11 @@ document.getElementById("dataList").addEventListener("click", async function(eve
 });
 
 async function loadTodo() {
+    document.getElementById('main').innerHTML=`<div id="todoSection">
+            <input id="todoInput" type="text" placeholder="Add a new task...">
+            <ul id="dataList"></ul>
+        </div>`
+ 
     const docRef = doc(db, "NoteVaultTodo", localStorage.getItem("MKA-Email"));
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
@@ -94,8 +99,8 @@ async function delCheckedList(index) {
 
 
 async function loadAllNotes() {
+    loadTodo();
     loader(10)
-    document.getElementById('allNotes').innerHTML=''
     const docRef = doc(db, "NoteVaultNotesData", localStorage.getItem("MKA-Email"));
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
@@ -160,7 +165,7 @@ async function saveEdit() {
     // Check if document data exists and initialize tempArray
     if (docSnap.exists()) {
         tempArray = docSnap.data()[noteNumber] || [];
-    }
+    
 
     if (file && file.files.length > 0) {
         const storageRef = ref(storage, `${file.files[0].name}`);
@@ -208,6 +213,7 @@ async function saveEdit() {
         loadAllNotes();
     }
     document.getElementById('imgSection').innerHTML=''
+}
 }
 
 
@@ -291,10 +297,15 @@ async function saveNewNote(){
             Timestamp.fromDate(new Date())
         ]
         let abc=`Note${lastDigit}`
+        if(lastDigit==1){
+            await setDoc(doc(db, "NoteVaultNotesData", localStorage.getItem("MKA-Email")), {
+                [abc]:tempArray
+              });
+        }else{
         await updateDoc(doc(db, "NoteVaultNotesData", localStorage.getItem("MKA-Email")), {
                 [abc]:tempArray
               });
-
+            }
     }
                 }
                 document.getElementById('newNoteTitle').value=''
@@ -304,7 +315,21 @@ async function saveNewNote(){
                 
 }
 
+async function delNote() {
+ 
+        const docRef = doc(db, "NoteVaultNotesData", localStorage.getItem("MKA-Email"));
+        const docSnap = await getDoc(docRef);
 
+    
+        await updateDoc(docRef, {
+            [noteNumber]: deleteField()  // Correct usage of deleteField()
+        });
+
+        console.log("Note deleted successfully!");
+        $('#exampleModal').modal('hide'); 
+        loadAllNotes();
+    
+}
 
 
 window.delList = delList;
@@ -314,6 +339,7 @@ window.saveEdit=saveEdit;
 window.openImg=openImg
 window.openCreateModal=openCreateModal;
 window.saveNewNote=saveNewNote;
+window.delNote=delNote;
 
 
 
