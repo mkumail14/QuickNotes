@@ -10,36 +10,41 @@
 </head>
 <body>
     <div id="loader"></div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button onclick="saveEdit()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <b>Last Updated on:</b><label id="modalUpdateTime"></label>
+          <div id="modalBody" class="modal-body">
+              <div id="contentSection"></div>
+              <div id="imgSection"></div>
+              <div id="uploadSection" style="margin-top: 5%;"><input id="newFile" type="File">    <button onclick="delNote()" class="button deleteBtn">Delete Note</button>  
+
+              </div>
+          </div>
+        </div>                
+      </div>
+    </div>
     <div style="display: flex; justify-content: center; padding-right: 20px; padding-left: 20px; align-items: center; gap: 10px; margin: 20px;">
         <input type="text" onclick="openCreateModal()" style="border-radius: 25px; padding: 10px 15px; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); width: 300px;" placeholder="Make New Note....">
         <!-- <button disabled id="reminderBtn" style="border-radius: 25px; padding: 10px 20px; border: none; background-color: #007BFF; color: white; font-size: 16px; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
             Add Reminder
         </button> -->
-        <button class="button logoutBtn">Logout</button>  
+        <button onclick="logout()" class="button logoutBtn">Logout</button>  
 
     </div>
         <div id="main">
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel"></h5>
-                  <button onclick="saveEdit()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <b>Last Updated on:</b><label id="modalUpdateTime"></label>
-                <div id="modalBody" class="modal-body">
-                    <div id="contentSection"></div>
-                    <div id="imgSection"></div>
-                    <div id="uploadSection" style="margin-top: 5%;"><input id="newFile" type="File">    <button onclick="delNote()" class="button deleteBtn">Delete Note</button>  
-  
-                    </div>
-                </div>
-              </div>                
+          <div id="todoSection">
+            <input id="todoInput" type="text" placeholder="Add a new task...">
+            <ul id="dataList"></ul>
             </div>
+            <div  id="allNotes"></div>
           </div>
-    </div>
     <div class="modal fade" id="createNotreModal" tabindex="-1" role="dialog" aria-labelledby="createNotreModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -61,7 +66,7 @@
           </div>                
         </div>
       </div>
-</div>
+
     <footer>Developed by MKA © 2024 - ALL RIGHTS RESERVED</footer>
     <script type="module" src="app.js"></script>
     <script type="module" src="authentication.js"></script>

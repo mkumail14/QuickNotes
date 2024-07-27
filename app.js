@@ -48,12 +48,7 @@ document.getElementById("dataList").addEventListener("click", async function(eve
     }
 });
 
-async function loadTodo() {
-    document.getElementById('main').innerHTML=`<div id="todoSection">
-            <input id="todoInput" type="text" placeholder="Add a new task...">
-            <ul id="dataList"></ul>
-        </div>`
- 
+async function loadTodo() { 
     const docRef = doc(db, "NoteVaultTodo", localStorage.getItem("MKA-Email"));
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
@@ -99,8 +94,8 @@ async function delCheckedList(index) {
 
 
 async function loadAllNotes() {
-    loadTodo();
     loader(10)
+    document.getElementById('allNotes').innerHTML=''
     const docRef = doc(db, "NoteVaultNotesData", localStorage.getItem("MKA-Email"));
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
@@ -122,7 +117,7 @@ async function loadAllNotes() {
                     });
                     loader(30)
                     noteBox+="</div>"
-                    document.getElementById('main').innerHTML+=noteBox;
+                    document.getElementById('allNotes').innerHTML+=noteBox;
                     loader(30)
             }
         }
